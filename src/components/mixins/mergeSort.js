@@ -73,7 +73,7 @@ export default {
 
                 this.mergeSortAccessCounter++;
                 this.mergeSortOperationCounter++;
-            }+
+            }
         },
         mergeSortCountTarget(array, index, target) {
             let leftIndex = index;

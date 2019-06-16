@@ -1,6 +1,6 @@
 export default {
     methods: {
-        bruteForceSearch() {
+        countBruteForceSearchEfficiency() {
             let unsortedArray = this.randomNumbers;
             let target = this.randomNumber;
 

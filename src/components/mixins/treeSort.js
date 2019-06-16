@@ -1,29 +1,46 @@
 export default {
     methods: {
         countTreeSortEfficiency() {
-            let array = [8, 10, 12, 5, 3, 6],
-                tree = array.reduce((t, v) => t ? this.insertNode(t, v) : new this.Node(v), null);
-            console.log(tree);
+            let array = this.randomNumbers,
+                tree = array.reduce(this.insertBinTree, void 0),
+                target = this.find(tree, this.randomNumber);
+
+            this.treeSortOccurrencesCounter = target.count;
+
             return {
+                'treeSortAccessCounter': this.treeSortAccessCounter,
+                'treeSortOperationCounter': this.treeSortOperationCounter,
                 'treeSortOccurrencesCounter': this.treeSortOccurrencesCounter,
-                'treSortOperationCounter': this.treeSortOperationCounter
             };
         },
-        insertNode(tree, value) {
-            let node = tree, key;
-
-            while (node.value !== value) {
-                key = value < node.value ? 'left' : 'right';
-                if (!node[key]) {
-                    node[key] = new this.Node(value);
-                    break;
+        insertBinTree (t = {value: void 0, left: void 0, right: void 0}, v, count = 1){
+            if (t.value !== void 0) {
+                if (t.value === v) {
+                    t.count++;
+                } else if (t.value > v) {
+                    t.left = this.insertBinTree(t.left,v);
+                } else {
+                    t.right = this.insertBinTree(t.right,v)
                 }
-                node = node[key];
+            } else {
+                t = {value: v, count: count};
             }
-            return tree;
+
+
+            return t;
         },
-        Node(value) {
-            this.value = value;
-        },
+
+        find(tree, target){
+            let t = tree;
+            if (tree.value !== target) {
+                if(tree.right && target > tree.value){
+                    t = this.find(tree.right, target)
+                } else {
+                    t = this.find(tree.left, target)
+                }
+            }
+
+            return t;
+        }
     }
 }

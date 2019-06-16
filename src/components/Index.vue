@@ -28,7 +28,7 @@
     mixins: [ bruteForceSearch, mergeSort, quickSort, treeSort ],
     data() {
       return {
-        number: 100,
+        number: 1000,
         randomNumbers: [],
         bruteForceAccessCounter: 0,
         bruteForceOccurrencesCounter: 0,
@@ -46,19 +46,22 @@
     },
     computed: {
       randomNumber() {
-        return this.randomNumbers[Math.floor(Math.random() * 10)];
+        return this.randomNumbers[Math.floor(Math.random() * 100000)];
       }
     },
     mounted() {
       this.setListOfRandomNumbers();
-      console.log(this.bruteForceSearch());
-      console.log(this.countMergeSortEfficiency());
-      console.log(this.countQuickSortEfficiency());
-      console.log(this.countTreeSortEfficiency());
+      console.log(this.randomNumbers);
+      console.log(this.randomNumber);
+      console.log(this.countBruteForceSearchEfficiency(), 'brute');
+      console.log(this.countQuickSortEfficiency(), 'quick');
+      console.log(this.countTreeSortEfficiency(), 'sort');
+      // console.log(this.countTreeSortEfficiency());
+      // console.log(this.countTreeSortEfficiency());
     },
     methods: {
       setListOfRandomNumbers() {
-        this.randomNumbers = Array.from({length: 15}, () => Math.floor(Math.random() * 10));
+        this.randomNumbers = Array.from({length: 100000}, () => Math.floor(Math.random() * 1000));
       },
     }
   }
