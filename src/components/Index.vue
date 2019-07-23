@@ -54,10 +54,9 @@
       console.log(this.randomNumbers);
       console.log(this.randomNumber);
       console.log(this.countBruteForceSearchEfficiency(), 'brute');
+      console.log(this.countMergeSortEfficiency(), 'merge');
       console.log(this.countQuickSortEfficiency(), 'quick');
       console.log(this.countTreeSortEfficiency(), 'sort');
-      // console.log(this.countTreeSortEfficiency());
-      // console.log(this.countTreeSortEfficiency());
     },
     methods: {
       setListOfRandomNumbers() {
