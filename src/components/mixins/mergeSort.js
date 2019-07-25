@@ -12,6 +12,13 @@ export default {
             return {
                 'mergeSortAccessCounter': this.mergeSortAccessCounter,
                 'mergeSortOperationCounter': this.mergeSortOperationCounter,
+
+                'mergeSearchAccessCounter': this.mergeSearchAccessCounter,
+                'mergeSearchOperationCounter': this.mergeSearchOperationCounter,
+
+                'mergeFindAccessCounter': this.mergeFindAccessCounter,
+                'mergeFindOperationCounter': this.mergeFindOperationCounter,
+
                 'mergeSortOccurrencesCounter': this.mergeSortOccurrencesCounter,
             };
         },
@@ -21,7 +28,7 @@ export default {
             }
 
             const middle = Math.floor(unsortedArray.length / 2);
-            const left = unsortedArray.slice(0, middle); // is this counting?
+            const left = unsortedArray.slice(0, middle);
             const right = unsortedArray.slice(middle);
 
             return this.merge(
@@ -44,7 +51,7 @@ export default {
                 }
 
                 this.mergeSortAccessCounter += 3;
-                this.mergeSortOperationCounter += 3;
+                this.mergeSortOperationCounter += 4;
             }
 
             return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))
@@ -56,8 +63,8 @@ export default {
             while(startIndex <= endIndex) {
                 let middleIndex = Math.floor((startIndex + endIndex) / 2);
 
-                this.mergeSortAccessCounter++;
-                this.mergeSortOperationCounter++;
+                this.mergeSearchAccessCounter++;
+                this.mergeSearchOperationCounter++;
 
                 if(target === array[middleIndex]) {
                     return middleIndex;
@@ -71,8 +78,8 @@ export default {
                     endIndex = middleIndex - 1;
                 }
 
-                this.mergeSortAccessCounter++;
-                this.mergeSortOperationCounter++;
+                this.mergeSearchAccessCounter++;
+                this.mergeSearchOperationCounter++;
             }
         },
         mergeSortCountTarget(array, index, target) {
@@ -80,17 +87,17 @@ export default {
             let rightIndex = index + 1;
 
             while (array[rightIndex] === target) {
-                this.mergeSortAccessCounter++;
-                this.mergeSortOperationCounter++;
-                this.mergeSortOccurrencesCounter += 1;
+                this.mergeFindAccessCounter++;
+                this.mergeFindOperationCounter++;
+                this.mergeSortOccurrencesCounter ++;
 
                 rightIndex++;
             }
 
             while (array[leftIndex] === target) {
-                this.mergeSortAccessCounter++;
-                this.mergeSortOperationCounter++;
-                this.mergeSortOccurrencesCounter += 1;
+                this.mergeFindAccessCounter++;
+                this.mergeFindOperationCounter++;
+                this.mergeSortOccurrencesCounter ++;
 
                 leftIndex--;
             }

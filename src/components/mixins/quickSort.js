@@ -1,7 +1,7 @@
 export default {
     methods: {
         countQuickSortEfficiency() {
-            let unsortedArray = this.randomNumbers;
+            let unsortedArray = this.randomNumbers.slice(0);
             let target = this.randomNumber;
 
             let sortedArray = this.quickSort(unsortedArray);
@@ -12,7 +12,14 @@ export default {
             return {
                 'quickSortAccessCounter': this.quickSortAccessCounter,
                 'quickSortOperationCounter': this.quickSortOperationCounter,
-                'quickSortOccurrencesCounter': this.quickSortOccurrencesCounter
+
+                'quickSearchAccessCounter': this.quickSearchAccessCounter,
+                'quickSearchOperationCounter': this.quickSearchOperationCounter,
+
+                'quickFindAccessCounter': this.quickFindAccessCounter,
+                'quickFindOperationCounter': this.quickFindOperationCounter,
+
+                'quickSortOccurrencesCounter': this.quickSortOccurrencesCounter,
             };
         },
         quickSort(array, left = 0, right = array.length - 1) {
@@ -72,8 +79,8 @@ export default {
             while(startIndex <= endIndex) {
                 let middleIndex = Math.floor((startIndex + endIndex) / 2);
 
-                this.quickSortAccessCounter++;
-                this.quickSortOperationCounter++;
+                this.quickSearchAccessCounter++;
+                this.quickSearchOperationCounter++;
 
                 if(target === array[middleIndex]) {
                     return middleIndex;
@@ -87,8 +94,8 @@ export default {
                     endIndex = middleIndex - 1;
                 }
 
-                this.quickSortAccessCounter++;
-                this.quickSortOperationCounter++;
+                this.quickSearchAccessCounter++;
+                this.quickSearchOperationCounter++;
             }
         },
         quickSortCountTarget(array, index, target) {
@@ -96,16 +103,16 @@ export default {
             let rightIndex = index + 1;
 
             while (array[rightIndex] === target) {
-                this.quickSortAccessCounter++;
-                this.quickSortOperationCounter++;
+                this.quickFindAccessCounter++;
+                this.quickFindOperationCounter++;
                 this.quickSortOccurrencesCounter++;
 
                 rightIndex++;
             }
 
             while (array[leftIndex] === target) {
-                this.quickSortAccessCounter++;
-                this.quickSortOperationCounter++;
+                this.quickFindAccessCounter++;
+                this.quickFindOperationCounter++;
                 this.quickSortOccurrencesCounter++;
 
                 leftIndex--;

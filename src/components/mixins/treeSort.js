@@ -1,7 +1,7 @@
 export default {
     methods: {
         countTreeSortEfficiency() {
-            let array = this.randomNumbers,
+            let array = this.randomNumbers.slice(0),
                 tree = array.reduce(this.insertBinTree, void 0),
                 target = this.find(tree, this.randomNumber);
 
@@ -10,6 +10,10 @@ export default {
             return {
                 'treeSortAccessCounter': this.treeSortAccessCounter,
                 'treeSortOperationCounter': this.treeSortOperationCounter,
+
+                'treeFindAccessCounter': this.treeFindAccessCounter,
+                'treeFindOperationCounter': this.treeFindOperationCounter,
+
                 'treeSortOccurrencesCounter': this.treeSortOccurrencesCounter,
             };
         },
@@ -43,7 +47,7 @@ export default {
             let t = tree;
 
             if (tree.value !== target) {
-                this.treeSortOperationCounter++;
+                this.treeFindOperationCounter++;
 
                 if(tree.right && target > tree.value){
                     t = this.find(tree.right, target)
@@ -51,7 +55,8 @@ export default {
                     t = this.find(tree.left, target)
                 }
 
-                this.treeSortOperationCounter++;
+                this.treeFindOperationCounter += 2;
+
             }
 
             return t;

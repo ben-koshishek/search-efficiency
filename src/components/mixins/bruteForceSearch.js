@@ -1,7 +1,7 @@
 export default {
     methods: {
         countBruteForceSearchEfficiency() {
-            let unsortedArray = this.randomNumbers;
+            let unsortedArray = this.randomNumbers.slice(0);
             let target = this.randomNumber;
 
             unsortedArray.forEach((number) => {
